@@ -5,118 +5,48 @@ Homepage
 {% endblock %}
 
 {% block css %}
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="{{url_for('static',filename='ss/bootstrap.ccss')}}" type="text/css" />
-	<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" type="text/css" />
-	<link rel="stylesheet" href="{{url_for('static',filename='css/dark.css')}}" type="text/css" />
-	<link rel="stylesheet" href="{{url_for('static',filename='css/font-icons.css')}}" type="text/css" />
-	<link rel="stylesheet" href="{{url_for('static',filename='css/animate.css')}}" type="text/css" />
-	<link rel="stylesheet" href="{{url_for('static',filename='css/magnific-popup.css')}}" type="text/css" />
-
-	<link rel="stylesheet" href="{{url_for('static',filename='css/custom.css')}}" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+ 
 {% endblock %}
 
 {% block content %}
-	<!-- Document Wrapper
+	<!-- Main content
 	============================================= -->
-	<div id="wrapper" class="clearfix">
-
-		<!-- Header
-		============================================= -->
-		<header id="header" class="full-header transparent-header dark no-sticky">
-			<div id="header-wrap">
-				<div class="container">
-					<div class="header-row">
-
-						<!-- Logo
-						============================================= -->
-						<div id="logo">
-							<a href="index.html" class="standard-logo"><img src="{{url_for('static',filename='images/logo.png')}}" alt="Misa Logo"></a>
-						</div><!-- #logo end -->
-
-						<div class="header-misc">
-
-						</div>
-
-						<div id="primary-menu-trigger">
-							<svg class="svg-trigger" viewBox="0 0 100 100"><path d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"></path><path d="m 30,50 h 40"></path><path d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"></path></svg>
-						</div>
-                	<div class="header-wrap-clone"></div>
-		</header><!-- #header end -->
-        <section id="slider" class="slider-element min-vh-100 dark include-header">
-                <div class="slider-inner" style="background-image: url({{url_for('static',filename='images/index/landing1.jpg')}});background-position: 50% 0;">
-
-                    <div class="container">
-                        <div class="slider-caption slider-caption-center">
-                            <h3 class="display-2" data-animate="fadeInDown">Hello there! I'm Thu...<br>Welcome to My Flask App!</h3>
+	<div class="main-content bg-lightblue theme-dark-bg right-chat-active">
+        <div class="middle-sidebar-bottom">
+            <div class="middle-sidebar-left">
+                <div class="middle-wrap">
+                    <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
+                        <div class="card-body p-lg-5 p-4 w-100 border-0">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1>Hello {{current_user.first_name}}! Welcome to <span class="d-inline-block fredoka-font ls-3 fw-600 text-current mb-0">friendbook </span>!</h1><br>
+                                    Share what you are thinking with us... 
+                                    <div class="text-center mb-3">
+                                        <img src="{{url_for('static',filename='images/welcome.png')}}" class="img-responsive w-100">
+						            </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    	<div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3 mt-3">
+                        
+                            <div class="card-body p-0">
+                                <a href="#" class=" font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center"><i class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i>Create Post</a>
+                            </div>
 
+                            <div class="card-body p-0 mt-3 position-relative">
+                                <figure class="avatar position-absolute ms-2 mt-1 top-5"><img src="https://avatars.dicebear.com/api/bottts/{{current_user.icon}}.svg" alt="image" class="shadow-sm rounded-circle w30"></figure>
+                                <textarea name="message" class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg" cols="30" rows="10" placeholder="What's on your mind?"></textarea>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
-        </section>
+            </div>
+        </div>
+		
 
-		<!-- Footer
-		============================================= -->
-		<footer id="footer" class="dark">
 
-			<!-- Copyrights
-			============================================= -->
-			<div id="copyrights">
-				<div class="container">
-
-					<div class="row col-mb-30">
-
-						<div class="col-md-6 text-center text-md-start">
-							Copyrights &copy; 2021<br>
-							<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
-						</div>
-
-						<div class="col-md-6 text-center text-md-end">
-							<div class="d-flex justify-content-center justify-content-md-end">
-								<a href="https://www.facebook.com/misa.phung.1" target ="_blank" class="social-icon si-small si-borderless si-facebook">
-									<i class="icon-facebook"></i>
-									<i class="icon-facebook"></i>
-								</a>
-
-								</a>
-
-								<a href="https://github.com/thuphung92" target="_blank" class="social-icon si-small si-borderless si-github">
-									<i class="icon-github"></i>
-									<i class="icon-github"></i>
-								</a>
-
-								<a href="https://www.linkedin.com/in/thu-phung-a840b1153/" target="_blank" class="social-icon si-small si-borderless si-linkedin">
-									<i class="icon-linkedin"></i>
-									<i class="icon-linkedin"></i>
-								</a>
-							</div>
-
-							<div class="clear"></div>
-
-							<i class="icon-envelope2"> thuphung492@mail.com</i>
-						</div>
-
-					</div>
-
-				</div>
-			</div><!-- #copyrights end -->
-
-		</footer><!-- #footer end -->
-
-	</div><!-- #wrapper end -->
-
-	<!-- Go To Top
-	============================================= -->
-	<div id="gotoTop" class="icon-angle-up"></div>
-
-	<!-- JavaScripts
-	============================================= -->
-	<script src="{{url_for('static',filename='js/jquery.js')}}"></script>
-	<script src="{{url_for('static',filename='js/plugins.min.js')}}"></script>
-
-	<!-- Footer Scripts
-	============================================= -->
-	<script src="{{url_for('static',filename='js/functions.js')}}"></script>    
+	</div><!-- #main content end -->
 
 {% endblock %}

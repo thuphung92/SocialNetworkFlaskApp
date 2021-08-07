@@ -4,28 +4,28 @@ from.models import User
 from flask_login import login_user, logout_user, current_user, login_required
 from . import bp as auth
 
-@auth.route('/register', methods=['GET', 'POST'])
+@auth.route('/register', methods=['GET','POST'])
 def register():
     form = RegisterForm()
     if request.method == 'POST' and form.validate_on_submit():
         try:
-            #get info
-            new_user_dict={
-                'first_name': form.first_name.data.title(),
-                'last_name': form.last_name.data.title(),
-                'email': form.email.data,
-                'password': form.password.data,
-                'icon': form.icon.data
+            new_user_data={
+                "first_name": form.first_name.data.title(),
+                "last_name": form.last_name.data.title(),
+                "email": form.email.data.lower(),
+                "icon":int(form.icon.data),
+                "password": form.password.data
             }
-            #create & save new user
-            new_user = User()
-            new_user.from_dict(new_user_dict)
+            new_user_object = User()
+            new_user_object.from_dict(new_user_data)
         except:
-            flash('Unexpected error', 'danger')
-            return render_template('auth/register.html.j2', form=form)
-        flash('Registered Successfully', 'success')
+            flash('There was an unexpected error', 'danger')
+            return render_template('auth/register.html.j2',form=form)
+        # Give the user some feedback that says registered successfully 
+        flash('Registered Successfully','success')
         return redirect(url_for('auth.login'))
-    return render_template('auth/register.html.j2', form=form)
+
+    return render_template('auth/register.html.j2',form=form)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -48,22 +48,23 @@ def login():
 @auth.route('/logout', methods=['GET'])
 @login_required
 def logout():
-    if current_user:
+    if current_user is not None:
         logout_user()
         flash("You've been logged out",'warning')
         return redirect(url_for('auth.login'))
 
 @auth.route('/edit_profile', methods=['GET','POST'])
+@login_required
 def edit_profile():
     form = EditProfileForm()
     if request.method == 'POST' and form.validate_on_submit():
             #get info
         new_user_dict={
-            'first_name': form.first_name.data.title(),
-            'last_name': form.last_name.data.title(),
-            'email': form.email.data,
-            'password': form.password.data,
-            'icon': int(form.icon.data) if int(form.icon.data) !=9000 else current_user.icon
+            "first_name": form.first_name.data.title(),
+            "last_name": form.last_name.data.title(),
+            "email": form.email.data.lower(),
+            "icon": int(form.icon.data) if int(form.icon.data) !=9000 else current_user.icon,
+            "password": form.password.data
         }
         user=User.query.filter_by(email=form.email.data.lower()).first()
         if user and current_user.email != user.email:
@@ -76,5 +77,5 @@ def edit_profile():
             return redirect(url_for('main.index'))
         except:
             flash('Unexpected error', 'danger')
-            return render_template('auth/edit_profile.html.j2', form=form)
+            return redirect('auth.edit_profile')
     return render_template('auth/register.html.j2', form=form)
